@@ -1,0 +1,46 @@
+{
+  "intents": [
+    {
+      "intent": "NameCapture",
+      "slots": [
+        {
+          "name": "PetName",
+          "type": "AMAZON.US_FIRST_NAME"
+        }
+      ]
+    },
+    {
+      "intent": "PetEventCapture",
+      "slots": [
+        {
+          "name": "PetEvent",
+          "type": "PET_EVENTS"
+        }
+      ]
+    },
+    {
+      "intent": "GetLastEvent",
+      "slots": [
+        {
+          "name": "PetEvent",
+          "type": "PET_EVENTS"
+        }
+      ]
+    },
+    {
+      "intent": "GetDailySummary"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "Hello"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "author": "Dan Lourenco",
+  "dependencies": {
+    "alexa-sdk": "^1.0.6",
+    "aws-sdk": "^2.43.0",
+  }
+}

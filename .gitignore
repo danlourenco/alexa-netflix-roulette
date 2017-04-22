@@ -1,0 +1,4 @@
+.DS_Store
+lambda.zip
+node_modules
+publish_lambda.sh
