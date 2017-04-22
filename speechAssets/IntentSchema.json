@@ -1,40 +1,25 @@
 {
   "intents": [
     {
-      "intent": "NameCapture",
+      "intent": "ActorCapture",
       "slots": [
         {
-          "name": "PetName",
-          "type": "AMAZON.US_FIRST_NAME"
+          "name": "ActorName",
+          "type": "AMAZON.Actor"
         }
       ]
     },
     {
-      "intent": "PetEventCapture",
+      "intent": "DirectorCapture",
       "slots": [
         {
-          "name": "PetEvent",
-          "type": "PET_EVENTS"
+          "name": "DirectorName",
+          "type": "AMAZON.Director"
         }
       ]
-    },
-    {
-      "intent": "GetLastEvent",
-      "slots": [
-        {
-          "name": "PetEvent",
-          "type": "PET_EVENTS"
-        }
-      ]
-    },
-    {
-      "intent": "GetDailySummary"
     },
     {
       "intent": "AMAZON.StopIntent"
-    },
-    {
-      "intent": "Hello"
     },
     {
       "intent": "AMAZON.CancelIntent"
