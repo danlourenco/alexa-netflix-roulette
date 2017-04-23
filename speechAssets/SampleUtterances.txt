@@ -1,2 +1,8 @@
+GetMovieByActor find movie by {ActorName}
 GetMovieByActor get movie by {ActorName}
 GetMovieByActor get movie by actor {ActorName}
+GetMovieByActor get movie starring {ActorName}
+GetMovieByActor find movie starring {ActorName}
+GetMovieByDirector find movie directed by {DirectorName}
+GetMovieByDirector get movie directed by {DirectorName}
+GetMovieByDirector get movie with director {DirectorName}

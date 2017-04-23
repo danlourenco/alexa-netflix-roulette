@@ -2,13 +2,11 @@
 
 const Alexa = require('alexa-sdk');
 const randomItem = require('random-item');
-
 const constants = require('./constants/constants');
-// const fetch = require('node-fetch');
-const api = require('./helpers/netflixRouletteAPI');
+const NetflixRouletteAPI = require('./helpers/netflixRouletteAPI');
 
-const SPEECH_OUTPUT = `Let's find you something great to watch on Netflix. But first, I'll need a little information. You can say: get movie by, and then the actor or actresses' name.  What would you like to do?`;
-const REPROMPT = `You can say: get movie by, and then the actor or actresses' name.`;
+const SPEECH_OUTPUT = `Let's find you something great to watch on Netflix. But first, I'll need a favorite actor or director to go by. To get a movie by actor, say: get movie starring, and then the actor or actresses' name. To get a movie by director, say: get movie directed by, and then the director's name. What would you like to do?`;
+const REPROMPT = `To get a movie by actor, say: get movie starring, and then the actor or actresses' name. To get a movie by director, say: get movie directed by, and then the director's name. What would you like to do?`;
 
 /* eslint-disable */
 exports.handler = function(event, context, callback){
@@ -30,21 +28,33 @@ const handlers = {
   'GetMovieByActor': function () {
     let actor = this.event.request.intent.slots.ActorName.value;
     if (actor) {
-      api.GetMovieByActor(actor)
+      NetflixRouletteAPI.GetMovieByActor(actor)
         .then( (movies) => {
           let randomMovie = randomItem(movies);
-          console.log('response: ', JSON.stringify(movies));
-          this.emit(':tell', `Okay, here's a movie starring ${actor}: ${randomMovie.show_title}. Here's a quick summary: ${randomMovie.summary}`);
+          this.emit(':tell', `Okay, here's a movie starring ${actor}: ${randomMovie.show_title}. Summary: ${randomMovie.summary}`);
         })
         .catch( (error) => {
-          console.log('NetflixRoulette API ERROR', error);
-          this.emit(':tell', `Sorry, there was a problem accessing the NetflixRoulette API`);
+          this.emit(':tell', `${error}`);
         });
-    }
+      } else {
+        this.emit(':ask', 'Sorry, I didn\'t get that.', REPROMPT);
+      }
   },
 
   'GetMovieByDirector': function () {
-    this.emit(':tell', 'functionality coming soon!');
+    let director = this.event.request.intent.slots.DirectorName.value;
+    if (director) {
+      NetflixRouletteAPI.GetMovieByDirector(director)
+        .then( (movies) => {
+          let randomMovie = randomItem(movies);
+          this.emit(':tell', `Okay, here's a movie directed by ${director}: ${randomMovie.show_title}. Summary: ${randomMovie.summary}`);
+        })
+        .catch( (error) => {
+          this.emit(':tell', `${error}`);
+        });
+    } else {
+      this.emit(':ask', 'Sorry, I didn\'t get that.', REPROMPT);
+    }
   },
 
   'AMAZON.StopIntent': function () {

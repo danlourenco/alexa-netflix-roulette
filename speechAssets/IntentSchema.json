@@ -1,22 +1,22 @@
 {
   "intents": [
     {
-      "intent": "GetMovieByActor",
       "slots": [
         {
           "name": "ActorName",
           "type": "AMAZON.Actor"
         }
-      ]
+      ],
+      "intent": "GetMovieByActor"
     },
     {
-      "intent": "GetMovieByDirector",
       "slots": [
         {
           "name": "DirectorName",
           "type": "AMAZON.Director"
         }
-      ]
+      ],
+      "intent": "GetMovieByDirector"
     },
     {
       "intent": "AMAZON.StopIntent"
