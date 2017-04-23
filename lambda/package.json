@@ -2,6 +2,9 @@
   "author": "Dan Lourenco",
   "dependencies": {
     "alexa-sdk": "^1.0.6",
-    "aws-sdk": "^2.43.0"
+    "aws-sdk": "^2.43.0",
+    "node-fetch": "^1.6.3",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0"
   }
 }
