@@ -3,6 +3,9 @@
 const Alexa = require('alexa-sdk');
 const constants = require('./constants/constants');
 
+const SPEECH_OUTPUT = `Let's find you something great to watch on Netflix. But first, I'll need a little information. You can say: get movie by, and then the actor or actresses' name.  What would you like to do?`
+const REPROMPT = `You can say: get movie by, and then the actor or actresses' name.`;
+
 /* eslint-disable */
 exports.handler = function(event, context, callback){
   var alexa = Alexa.handler(event, context);
@@ -17,23 +20,34 @@ exports.handler = function(event, context, callback){
 
 const handlers = {
   'LaunchRequest': function() {
-    // var petName = this.attributes['petName'];
-    // if (petName) {
-    //   this.emit(':ask', `Welcome back! Let's record some more data about ${petName}. ` +  GET_INTENT_REPROMPT, GET_INTENT_REPROMPT);
-    // } else {
-    //   this.handler.state = constants.states.ONBOARDING;
-    //   this.emitWithState('NewSession');
-    // }
-    this.emit(':ask', `Let's find you something great to watch on Netflix. But first, I'll need a little information. You can say: get movie by, and then the actor or actresses' name.  What would you like to do?`, `You can say: get movie by, and then the actor or actresses' name.`);
-
+    this.emit(':ask', SPEECH_OUTPUT, REPROMPT);
   },
 
   'GetMovieByActor': function () {
-    
+    this.emit(':tell', 'functionality coming soon!');
   },
 
   'GetMovieByDirector': function () {
+    this.emit(':tell', 'functionality coming soon!');
+  },
 
+  'AMAZON.StopIntent': function () {
+    // State Automatically Saved with :tell
+    this.emit(':tell', 'Goodbye!');
+  },
+
+  'AMAZON.CancelIntent': function () {
+    // State Automatically Saved with :tell
+    this.emit(':tell', 'Goodbye!');
+  },
+
+  'AMAZON.HelpIntent': function () {
+    // this.emit(':ask', GET_INTENT_REPROMPT, GET_INTENT_REPROMPT);
+    this.emit(':ASK', REPROMPT, REPROMPT);
+  },
+
+  'Unhandled': function () {
+    this.emitWithState('AMAZON.HelpIntent');
   }
 }
 
