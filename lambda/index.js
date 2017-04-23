@@ -1,9 +1,11 @@
 /*eslint quotes: ["error", "single", { "allowTemplateLiterals": true }]*/
 
 const Alexa = require('alexa-sdk');
+const randomItem = require('random-item');
+
 const constants = require('./constants/constants');
-const fetch = require('node-fetch');
-const rp = require('request-promise');
+// const fetch = require('node-fetch');
+const api = require('./helpers/netflixRouletteAPI');
 
 const SPEECH_OUTPUT = `Let's find you something great to watch on Netflix. But first, I'll need a little information. You can say: get movie by, and then the actor or actresses' name.  What would you like to do?`;
 const REPROMPT = `You can say: get movie by, and then the actor or actresses' name.`;
@@ -26,33 +28,19 @@ const handlers = {
   },
 
   'GetMovieByActor': function () {
-    let actorSlot = this.event.request.intent.slots.ActorName.value;
-    if (actorSlot) {
-      let uriEncodedActorName = actorSlot;
-      rp('http://netflixroulette.net/api/api.php?actor=Nicolas%20Cage')
-        .then(function(res) {
-          console.log(res);
-          this.emit(':tell', `You said: ${actorSlot}. Functionality coming soon!`);
+    let actor = this.event.request.intent.slots.ActorName.value;
+    if (actor) {
+      api.GetMovieByActor(actor)
+        .then( (movies) => {
+          let randomMovie = randomItem(movies);
+          console.log('response: ', JSON.stringify(movies));
+          this.emit(':tell', `Okay, here's a movie starring ${actor}: ${randomMovie.show_title}. Here's a quick summary: ${randomMovie.summary}`);
         })
-        .catch(function(err) {
-          console.log('there was an error ', err);
+        .catch( (error) => {
+          console.log('NetflixRoulette API ERROR', error);
+          this.emit(':tell', `Sorry, there was a problem accessing the NetflixRoulette API`);
         });
-      // fetch(`${constants.baseUrl}actor=${uriEncodedActorName}`)
-      //   .then(function (res) {
-      //     return res.json();
-      //   }).then(function(json) {
-      //     console.log(json);
-      //     this.emit(':tell', `You said: ${actorSlot}. Functionality coming soon!`);
-      //     context.succeed('Blah');
-      //   }).catch(function(err) {
-      //     console.log('there was an error');
-      //   });
-
-
-
     }
-    this.emit(':tell', `You didn't say an actor. try again.`);
-
   },
 
   'GetMovieByDirector': function () {
