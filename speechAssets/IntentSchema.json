@@ -1,7 +1,7 @@
 {
   "intents": [
     {
-      "intent": "ActorCapture",
+      "intent": "GetMovieByActor",
       "slots": [
         {
           "name": "ActorName",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "intent": "DirectorCapture",
+      "intent": "GetMovieByDirector",
       "slots": [
         {
           "name": "DirectorName",

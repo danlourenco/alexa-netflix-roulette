@@ -3,7 +3,7 @@
 const Alexa = require('alexa-sdk');
 const constants = require('./constants/constants');
 
-const SPEECH_OUTPUT = `Let's find you something great to watch on Netflix. But first, I'll need a little information. You can say: get movie by, and then the actor or actresses' name.  What would you like to do?`
+const SPEECH_OUTPUT = `Let's find you something great to watch on Netflix. But first, I'll need a little information. You can say: get movie by, and then the actor or actresses' name.  What would you like to do?`;
 const REPROMPT = `You can say: get movie by, and then the actor or actresses' name.`;
 
 /* eslint-disable */

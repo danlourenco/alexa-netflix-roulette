@@ -1,9 +1,2 @@
-NameCapture My dog's name is {PetName}
-Hello Hello
-Hello hi
-PetEventCapture record {PetEvent}
-PetEventCapture log {PetEvent}
-PetEventCapture {PetEvent}
-GetLastEvent get last event
-GetLastEvent get last {PetEvent}
-GetDailySummary get daily summary
+GetMovieByActor get movie by {ActorName}
+GetMovieByActor get movie by actor {ActorName}
