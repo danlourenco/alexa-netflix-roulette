@@ -68,8 +68,7 @@ const handlers = {
   },
 
   'AMAZON.HelpIntent': function () {
-    // this.emit(':ask', GET_INTENT_REPROMPT, GET_INTENT_REPROMPT);
-    this.emit(':ASK', REPROMPT, REPROMPT);
+    this.emit(':ask', REPROMPT, REPROMPT);
   },
 
   'Unhandled': function () {
