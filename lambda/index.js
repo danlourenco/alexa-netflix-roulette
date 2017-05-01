@@ -3,7 +3,7 @@
 const Alexa = require('alexa-sdk');
 const randomItem = require('random-item');
 const constants = require('./constants/constants');
-const NetflixRouletteAPI = require('./helpers/netflixRouletteAPI');
+const NetflixRouletteAPI = require('./api/netflixRouletteAPI');
 
 const SPEECH_OUTPUT = `Let's find you something great to watch on Netflix. But first, I'll need a favorite actor or director to go by. To get a movie by actor, say: get movie starring, and then the actor or actresses' name. To get a movie by director, say: get movie directed by, and then the director's name. What would you like to do?`;
 const REPROMPT = `To get a movie by actor, say: get movie starring, and then the actor or actresses' name. To get a movie by director, say: get movie directed by, and then the director's name. What would you like to do?`;
